@@ -6,8 +6,8 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
     styleUrls: ['./star.component.css']
 })
 export class StarComponent implements OnChanges{
-    @Input() rating: number = 0;
-    cropWidth: number = 75;
+    @Input() rating = 0;
+    cropWidth = 75;
     @Output() ratingClicked: EventEmitter<string> = new EventEmitter<string>();
 
     ngOnChanges(): void {

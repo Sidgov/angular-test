@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-header">
+        {{pageTitle + ': ' + product?.productName}}
+    </div>
+    <div class="card-body"
+        *ngIf="product">
+        <div class="row">
+            <div class="col-md-6">
+                <div>
+                    <a [routerLink]="['/products', product.productId]"
+                        [state]="product">
+                        {{product.productName}}
+                    </a>
+                </div>
+                <div>{{product.productCode | lowercase | convertToSpaces:'-'}}</div>
+                <div>{{product.releaseDate}}</div>
+                <div>{{product.price | currency:'EUR':'symbol':'1.2-2'}}</div>
+                <div>
+                    <pm-star [rating]="product.starRating">
+                    </pm-star>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img [src]="product.imageUrl"
+                    [title]="product.productName | uppercase"
+                    [alt]="product.productName | uppercase"
+                    [style.width.px]="imageWidth"
+                    [style.margin.px]="imageMargin">
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-dark" (click)="onBack()">< Back</button>
+    </div>
+</div>
