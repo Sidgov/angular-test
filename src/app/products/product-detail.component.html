@@ -31,5 +31,11 @@
     </div>
     <div class="card-footer">
         <button class="btn btn-dark" (click)="onBack()">< Back</button>
+        <a *ngIf="product"
+            class="btn btn-primary"
+            [routerLink]="['/products', product.productId, 'edit']"
+            [state]="product">
+            Edit
+        </a>
     </div>
 </div>

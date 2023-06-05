@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        {{': ' + product?.productName}}
+        {{product ? 'Edit product: ' + product.productName : 'Add a product'}}
     </div>
     <div class="card-body">
         <form novalidate [formGroup]="productForm">
@@ -9,18 +9,10 @@
                 <div class="col-md-6">
                     <input 
                         type="text"
-                        required
-                        minlength="4"
                         formControlName="productName"
-                        [ngClass]="{'is-invalid': (productForm.get('productName')?.touched || productForm.get('productName')?.dirty) 
-                            && !productForm.get('productName')?.valid}">
+                        [ngClass]="{'is-invalid': messages.productName}">
                     <span class="invalid-feedback">
-                        <span *ngIf="productForm.get('productName')?.errors?.['required']">
-                            Please enter a product name.
-                        </span>
-                        <span *ngIf="productForm.get('productName')?.errors?.['minlength']">
-                            The product name must be longer than 3 characters.
-                        </span>
+                        {{ messages.productName }}
                     </span>
                 </div>
             </div>
@@ -28,15 +20,11 @@
                 <label for="productCode" class="col-md-4">Product Code :</label>
                 <div class="col-md-6">
                     <input 
-                        type="text"
-                        required
+                        type="text"                    
                         formControlName="productCode"
-                        [ngClass]="{'is-invalid': (productForm.get('productCode')?.touched || productForm.get('productCode')?.dirty) 
-                            && !productForm.get('productCode')?.valid}">
+                        [ngClass]="{'is-invalid': messages.productCode}">
                     <span class="invalid-feedback">
-                        <span *ngIf="productForm.get('productCode')?.errors?.['required']">
-                            Please enter a product code.
-                        </span>
+                        {{ messages.productCode }}
                     </span>
                 </div>
             </div>
@@ -44,15 +32,11 @@
                 <label for="price" class="col-md-4">Price :</label>
                 <div class="col-md-6">
                     <input 
-                        type="number"
-                        required
-                        formControlName="price"
-                        [ngClass]="{'is-invalid': (productForm.get('price')?.touched || productForm.get('price')?.dirty) 
-                            && !productForm.get('price')?.valid}">
+                    type="number"
+                    formControlName="price"
+                    [ngClass]="{'is-invalid': messages.price}">
                     <span class="invalid-feedback">
-                        <span *ngIf="productForm.get('price')?.errors?.['required']">
-                            Please enter a price.
-                        </span>
+                        {{ messages.price }}
                     </span>
                 </div>
             </div>
@@ -60,16 +44,11 @@
                 <label for="starRating" class="col-md-4">Star Rating :</label>
                 <div class="col-md-6">
                     <input 
-                        type="number"
-                        required
-                        minlength="4"
-                        formControlName="starRating"
-                        [ngClass]="{'is-invalid': (productForm.get('starRating')?.touched || productForm.get('starRating')?.dirty) 
-                            && !productForm.get('starRating')?.valid}">
+                    type="number"
+                    formControlName="starRating"
+                    [ngClass]="{'is-invalid': messages.starRating}">
                     <span class="invalid-feedback">
-                        <span *ngIf="productForm.get('starRating')?.errors?.['required']">
-                            Please enter a star rating.
-                        </span>
+                        {{ messages.starRating }}
                     </span>
                 </div>
             </div>
