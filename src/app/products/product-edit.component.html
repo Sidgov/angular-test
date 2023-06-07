@@ -3,12 +3,13 @@
         {{product ? 'Edit product: ' + product.productName : 'Add a product'}}
     </div>
     <div class="card-body">
-        <form novalidate [formGroup]="productForm">
+        <form novalidate [formGroup]="productForm" (submit)="sendForm()">
             <div class="form-group row">
                 <label for="productName" class="col-md-4">Product Name :</label>
                 <div class="col-md-6">
                     <input 
                         type="text"
+                        id="productName"
                         formControlName="productName"
                         [ngClass]="{'is-invalid': messages.productName}">
                     <span class="invalid-feedback">
@@ -20,7 +21,8 @@
                 <label for="productCode" class="col-md-4">Product Code :</label>
                 <div class="col-md-6">
                     <input 
-                        type="text"                    
+                        type="text"     
+                        id="productCode"               
                         formControlName="productCode"
                         [ngClass]="{'is-invalid': messages.productCode}">
                     <span class="invalid-feedback">
@@ -29,22 +31,11 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="price" class="col-md-4">Price :</label>
-                <div class="col-md-6">
-                    <input 
-                    type="number"
-                    formControlName="price"
-                    [ngClass]="{'is-invalid': messages.price}">
-                    <span class="invalid-feedback">
-                        {{ messages.price }}
-                    </span>
-                </div>
-            </div>
-            <div class="form-group row">
                 <label for="starRating" class="col-md-4">Star Rating :</label>
                 <div class="col-md-6">
                     <input 
                     type="number"
+                    id="starRating"
                     formControlName="starRating"
                     [ngClass]="{'is-invalid': messages.starRating}">
                     <span class="invalid-feedback">
@@ -52,7 +43,63 @@
                     </span>
                 </div>
             </div>
-            <div class="form-group row mb-2">
+            <div class="row">
+                <div class="col-md-4">
+                    tags:
+                </div>
+                <button class="col-md-4"
+                    [disabled]="!tags.valid"
+                    (click)="addTag()">
+                    Add Tag
+                </button>
+            </div>
+            <div class="form-group row" 
+            formArrayName="tags"
+            *ngFor="let tag of tags.controls; let i = index">
+            <div class="col-md-6 row"
+            [formGroupName]="i">
+            <label attr.for="{{'tagName'+i}}" class="col-md-4">Tag :</label>
+            <div class="col-md-6">
+                <input
+                id="{{'tagName'+i}}"
+                type="text"
+                formControlName="tagName">
+            </div>
+            <div class="col-md-2">
+                <button (click)="deleteTag(i)">Delete</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        <label for="description" class="col-md-4">Description :</label>
+        <div class="col-md-6">
+            <input 
+            type="text"
+            id="description"
+            formControlName="description"
+            [ngClass]="{'is-invalid': messages.description}">
+            <span class="invalid-feedback">
+                {{ messages.description }}
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="price" class="col-md-4">Price :</label>
+        <div class="col-md-6">
+            <input 
+            type="number"
+            id="price"
+            formControlName="price"
+            [ngClass]="{'is-invalid': messages.price}">
+            <span class="invalid-feedback">
+                {{ messages.price }}
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group row mb-2">
                 <div class="offset-md-2 col-mb-4">
                     <button class="btn btn-primary mr-3"
                         type="submit"

@@ -7,7 +7,7 @@ import { AppComponent } from './app.component'
 import { WelcomeComponent } from './home/welcome.component'
 import { RouterModule } from '@angular/router'
 import { ProductModule } from './products/product.module';
-import { SharedModule } from './shared/shared.module'
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { SharedModule } from './shared/shared.module'
       { path: '', redirectTo:'welcome', pathMatch:'full'},
       { path: '**', redirectTo:'welcome', pathMatch:'full'},
     ]),
-    ProductModule
+    ProductModule,
+    GraphQLModule
   ],
   providers: [],
   bootstrap: [AppComponent]

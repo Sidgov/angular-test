@@ -12,21 +12,15 @@ export interface IProduct {
 }
 
 export function isIProduct(object: any): object is IProduct {
-  return 'productId' in object
-    && 'productName' in object
-    && 'productCode' in object
-    && 'releaseDate' in object
-    && 'description' in object
-    && 'price' in object
-    && 'starRating' in object
-    && 'imageUrl' in object;
+  return 'productId' in object;
 } 
 
 export enum Inputs {
   PRODUCT_NAME = 'productName',
   PRODUCT_CODE = 'productCode',
-  PRICE = 'price',
-  STAR_RATING = 'starRating'
+  PRICE = 'price', 
+  STAR_RATING = 'starRating',
+  DESCRIPTION = 'description'
 }
 
 export type IMessages = {
